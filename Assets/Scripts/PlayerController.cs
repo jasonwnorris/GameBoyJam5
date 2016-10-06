@@ -10,9 +10,13 @@ public class PlayerController : MonoBehaviour
     const string c_AnimationRunRight = "anim_player_run_right";
 
     const string c_AxisHorizontal = "Horizontal";
+    const string c_ButtonFire = "Fire1";
     const string c_ButtonJump = "Jump";
 
     const float c_RaycastDistance = 12.125f;
+
+    const string c_FirePointLeft = "fire_point_left";
+    const string c_FirePointRight = "fire_point_right";
 
     #endregion
 
@@ -22,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public float JumpingSpeed = 2.5f;
     public float MinimumJumpTime = 0.15f;
     public float MaximumJumpTime = 0.5f;
+    public GameObject ProjectilePrefab;
+    public float ProjectileSpeed = 100.0f;
 
     #endregion
 
@@ -30,6 +36,9 @@ public class PlayerController : MonoBehaviour
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
     private Animator m_Animator;
+
+    private Transform m_LeftFireTransform;
+    private Transform m_RightFireTransform;
 
     private bool m_IsFacingRight;
     private bool m_IsOnGround;
@@ -45,6 +54,9 @@ public class PlayerController : MonoBehaviour
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
+
+        m_LeftFireTransform = m_Transform.Find(c_FirePointLeft).GetComponent<Transform>();
+        m_RightFireTransform = m_Transform.Find(c_FirePointRight).GetComponent<Transform>();
 
         m_IsFacingRight = true;
         m_IsOnGround = false;
@@ -67,6 +79,7 @@ public class PlayerController : MonoBehaviour
 
         // Read input.
         float horizontal = Input.GetAxis(c_AxisHorizontal);
+        bool isFireButtonDown = Input.GetButtonDown(c_ButtonFire);
         bool isJumpButtonDown = Input.GetButton(c_ButtonJump);
 
         // Handle movement.
@@ -81,6 +94,14 @@ public class PlayerController : MonoBehaviour
                 m_IsJumping = true;
                 m_JumpTime = 0.0f;
             }
+        }
+
+        // Handle firing.
+        if (isFireButtonDown)
+        {
+            GameObject go = (GameObject)Instantiate(ProjectilePrefab, (m_IsFacingRight ? m_RightFireTransform.position : m_LeftFireTransform.position), Quaternion.identity);
+            Rigidbody2D rigidbody = go.GetComponent<Rigidbody2D>();
+            rigidbody.velocity = (m_IsFacingRight ? Vector2.right : Vector2.left) * ProjectileSpeed;
         }
 
         // Increase jumping over time.
