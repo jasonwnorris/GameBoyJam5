@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1538674460}
-  Speed: 0.75
+  FollowFactor: 10
 --- !u!1001 &1176844823
 Prefab:
   m_ObjectHideFlags: 0

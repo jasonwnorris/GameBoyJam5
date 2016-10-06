@@ -5,7 +5,7 @@ public class FollowTarget : MonoBehaviour
     #region Public Variables
 
     public Transform Target;
-    public float Speed = 1.0f;
+    public float FollowFactor = 2.0f;
 
     #endregion
 
@@ -29,16 +29,9 @@ public class FollowTarget : MonoBehaviour
 
         Vector2 difference = targetPosition - currentPosition;
 
-        if (difference.magnitude < Speed)
-        {
-            m_Transform.position = new Vector3(targetPosition.x, targetPosition.y, m_Transform.position.z);
-        }
-        else
-        {
-            Vector2 movePosition = currentPosition + difference.normalized * Speed;
+        Vector2 movePosition = currentPosition + difference / FollowFactor;
 
-            m_Transform.position = new Vector3(movePosition.x, movePosition.y, m_Transform.position.z);
-        }
+        m_Transform.position = new Vector3(movePosition.x, movePosition.y, m_Transform.position.z);
     }
 
     #endregion
