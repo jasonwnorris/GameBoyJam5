@@ -17,17 +17,28 @@ public class PlayerController : MonoBehaviour
 
     const string c_FirePointLeft = "fire_point_left";
     const string c_FirePointRight = "fire_point_right";
+    const string c_GroundSensor = "ground_sensor";
 
     #endregion
 
     #region Public Variables
 
-    public float HorizontalMovementSpeed = 1.0f;
-    public float JumpingSpeed = 2.5f;
-    public float MinimumJumpTime = 0.15f;
-    public float MaximumJumpTime = 0.5f;
+    public LayerMask GroundLayerMask;
+
+    public float HorizontalAcceleration;
+    public float HorizontalFriction;
+    public float MaxHorizontalSpeed;
+    public float Gravity;
+    public float MaxFallSpeed;
+    public float JumpingAcceleration;
+    public float MinJumpTime;
+    public float MaxJumpTime;
     public GameObject ProjectilePrefab;
-    public float ProjectileSpeed = 100.0f;
+    public float ProjectileSpeed;
+
+    public AudioClip JumpAudio;
+    public AudioClip LandAudio;
+    public AudioClip BlastAudio;
 
     #endregion
 
@@ -36,40 +47,56 @@ public class PlayerController : MonoBehaviour
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
     private Animator m_Animator;
+    private AudioSource m_AudioSource;
 
     private Transform m_LeftFireTransform;
     private Transform m_RightFireTransform;
+    private BoxCollider2D m_GroundCollider;
 
     private bool m_IsFacingRight;
     private bool m_IsOnGround;
     private bool m_IsJumping;
-    private float m_JumpTime;
+    private float m_TotalJumpTime;
 
     #endregion
 
-    #region Methods
+    #region MonoBehaviour Methods
 
     void Start()
     {
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
+        m_AudioSource = GetComponent<AudioSource>();
 
         m_LeftFireTransform = m_Transform.Find(c_FirePointLeft).GetComponent<Transform>();
         m_RightFireTransform = m_Transform.Find(c_FirePointRight).GetComponent<Transform>();
+        m_GroundCollider = m_Transform.Find(c_GroundSensor).GetComponent<BoxCollider2D>();
 
         m_IsFacingRight = true;
         m_IsOnGround = false;
         m_IsJumping = false;
-        m_JumpTime = 0.0f;
+        m_TotalJumpTime = 0.0f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        // Raycast to check if on ground.
-        RaycastHit2D raycastHit = Physics2D.Raycast(m_Transform.position, Vector2.down, c_RaycastDistance);
-        if (raycastHit)
+        // Read input.
+        float horizontalInput = Input.GetAxis(c_AxisHorizontal);
+        bool isFireButtonDown = Input.GetButtonDown(c_ButtonFire);
+        bool isJumpButtonDown = Input.GetButton(c_ButtonJump);
+
+        // Store temporary of current velocity.
+        Vector2 velocity = m_Rigidbody.velocity;
+
+        // Check if on ground.
+        if (m_GroundCollider.IsTouchingLayers(GroundLayerMask))
         {
+            if (!m_IsOnGround)
+            {
+                PlaySound(LandAudio);
+            }
+
             m_IsOnGround = true;
         }
         else
@@ -77,24 +104,62 @@ public class PlayerController : MonoBehaviour
             m_IsOnGround = false;
         }
 
-        // Read input.
-        float horizontal = Input.GetAxis(c_AxisHorizontal);
-        bool isFireButtonDown = Input.GetButtonDown(c_ButtonFire);
-        bool isJumpButtonDown = Input.GetButton(c_ButtonJump);
-
-        // Handle movement.
-        Vector2 horizontalForce = Vector2.right * horizontal * HorizontalMovementSpeed;
-        m_Rigidbody.AddRelativeForce(horizontalForce, ForceMode2D.Impulse);
-
         // Handle jump input.
-        if (isJumpButtonDown && m_IsOnGround)
+        if (isJumpButtonDown && m_IsOnGround && !m_IsJumping)
         {
-            if (!m_IsJumping)
+            m_IsJumping = true;
+            m_TotalJumpTime = 0.0f;
+            velocity.y = 0.0f;
+
+            PlaySound(JumpAudio);
+        }
+
+        // Handle horizontal movement.
+        if (horizontalInput != 0.0f)
+        {
+            // Acceleration.
+            velocity.x += horizontalInput * HorizontalAcceleration;
+
+            velocity.x = Mathf.Clamp(velocity.x, -MaxHorizontalSpeed, MaxHorizontalSpeed);
+        }
+        else
+        {
+            // Friction.
+            if (Mathf.Abs(velocity.x) < HorizontalFriction)
             {
-                m_IsJumping = true;
-                m_JumpTime = 0.0f;
+                velocity.x = 0.0f;
+            }
+            else
+            {
+                velocity.x -= HorizontalFriction * Mathf.Sign(velocity.x);
             }
         }
+
+        // Increase jumping over time.
+        if (m_IsJumping)
+        {
+            velocity.y += JumpingAcceleration * Mathf.Sqrt(MaxJumpTime - Mathf.Min(m_TotalJumpTime, MaxJumpTime));
+
+            m_TotalJumpTime += Time.deltaTime;
+            if (m_TotalJumpTime >= MaxJumpTime || (!isJumpButtonDown && m_TotalJumpTime > MinJumpTime))
+            {
+                m_IsJumping = false;
+            }
+        }
+
+        // Fall from gravity.
+        if (!m_IsOnGround && !m_IsJumping)
+        {
+            velocity.y -= Gravity;
+
+            if (velocity.y < -MaxFallSpeed)
+            {
+                velocity.y = -MaxFallSpeed;
+            }
+        }
+
+        // Assign velocity to rigidbody.
+        m_Rigidbody.velocity = velocity;
 
         // Handle firing.
         if (isFireButtonDown)
@@ -102,29 +167,17 @@ public class PlayerController : MonoBehaviour
             GameObject go = (GameObject)Instantiate(ProjectilePrefab, (m_IsFacingRight ? m_RightFireTransform.position : m_LeftFireTransform.position), Quaternion.identity);
             Rigidbody2D rigidbody = go.GetComponent<Rigidbody2D>();
             rigidbody.velocity = (m_IsFacingRight ? Vector2.right : Vector2.left) * ProjectileSpeed;
-        }
 
-        // Increase jumping over time.
-        if (m_IsJumping)
-        {
-            Vector2 verticalForce = Vector2.up * JumpingSpeed;
-            m_Rigidbody.AddRelativeForce(verticalForce, ForceMode2D.Impulse);
-
-            m_JumpTime += Time.deltaTime;
-
-            if (m_JumpTime >= MaximumJumpTime || (!isJumpButtonDown && m_JumpTime > MinimumJumpTime))
-            {
-                m_IsJumping = false;
-            }
+            PlaySound(BlastAudio);
         }
 
         // Change states based on input.
-        if (horizontal > 0.0f)
+        if (horizontalInput > 0.0f)
         {
             m_Animator.Play(c_AnimationRunRight);
             m_IsFacingRight = true;
         }
-        else if (horizontal < 0.0f)
+        else if (horizontalInput < 0.0f)
         {
             m_Animator.Play(c_AnimationRunLeft);
             m_IsFacingRight = false;
@@ -140,6 +193,15 @@ public class PlayerController : MonoBehaviour
                 m_Animator.Play(c_AnimationIdleLeft);
             }
         }
+    }
+
+    #endregion
+
+    #region Helpers
+
+    private void PlaySound(AudioClip p_AudioClip)
+    {
+        m_AudioSource.PlayOneShot(p_AudioClip);
     }
 
     #endregion
