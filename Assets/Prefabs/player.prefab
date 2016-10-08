@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010831765004}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: fire_point_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000014139688288}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: fire_point_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011238754558}
   - 61: {fileID: 61000012452756102}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: ground_sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - 61: {fileID: 61000012629583406}
   - 114: {fileID: 114000013906913284}
   - 82: {fileID: 82000012556736754}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
