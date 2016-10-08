@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     #region Public Variables
 
+    public LayerMask GroundLayerMask;
+
     public float HorizontalAcceleration;
     public float HorizontalFriction;
     public float MaxHorizontalSpeed;
@@ -34,7 +36,9 @@ public class PlayerController : MonoBehaviour
     public GameObject ProjectilePrefab;
     public float ProjectileSpeed;
 
-    public LayerMask GroundLayerMask;
+    public AudioClip JumpAudio;
+    public AudioClip LandAudio;
+    public AudioClip BlastAudio;
 
     #endregion
 
@@ -43,6 +47,7 @@ public class PlayerController : MonoBehaviour
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
     private Animator m_Animator;
+    private AudioSource m_AudioSource;
 
     private Transform m_LeftFireTransform;
     private Transform m_RightFireTransform;
@@ -55,13 +60,14 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region Methods
+    #region MonoBehaviour Methods
 
     void Start()
     {
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
         m_Animator = GetComponent<Animator>();
+        m_AudioSource = GetComponent<AudioSource>();
 
         m_LeftFireTransform = m_Transform.Find(c_FirePointLeft).GetComponent<Transform>();
         m_RightFireTransform = m_Transform.Find(c_FirePointRight).GetComponent<Transform>();
@@ -86,6 +92,11 @@ public class PlayerController : MonoBehaviour
         // Check if on ground.
         if (m_GroundCollider.IsTouchingLayers(GroundLayerMask))
         {
+            if (!m_IsOnGround)
+            {
+                PlaySound(LandAudio);
+            }
+
             m_IsOnGround = true;
         }
         else
@@ -94,11 +105,13 @@ public class PlayerController : MonoBehaviour
         }
 
         // Handle jump input.
-        if (isJumpButtonDown && m_IsOnGround)
+        if (isJumpButtonDown && m_IsOnGround && !m_IsJumping)
         {
             m_IsJumping = true;
             m_TotalJumpTime = 0.0f;
             velocity.y = 0.0f;
+
+            PlaySound(JumpAudio);
         }
 
         // Handle horizontal movement.
@@ -154,6 +167,8 @@ public class PlayerController : MonoBehaviour
             GameObject go = (GameObject)Instantiate(ProjectilePrefab, (m_IsFacingRight ? m_RightFireTransform.position : m_LeftFireTransform.position), Quaternion.identity);
             Rigidbody2D rigidbody = go.GetComponent<Rigidbody2D>();
             rigidbody.velocity = (m_IsFacingRight ? Vector2.right : Vector2.left) * ProjectileSpeed;
+
+            PlaySound(BlastAudio);
         }
 
         // Change states based on input.
@@ -178,6 +193,15 @@ public class PlayerController : MonoBehaviour
                 m_Animator.Play(c_AnimationIdleLeft);
             }
         }
+    }
+
+    #endregion
+
+    #region Helpers
+
+    private void PlaySound(AudioClip p_AudioClip)
+    {
+        m_AudioSource.PlayOneShot(p_AudioClip);
     }
 
     #endregion

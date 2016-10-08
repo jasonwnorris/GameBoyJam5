@@ -70,6 +70,7 @@ GameObject:
   - 50: {fileID: 50000013114779728}
   - 61: {fileID: 61000012629583406}
   - 114: {fileID: 114000013906913284}
+  - 82: {fileID: 82000012556736754}
   m_Layer: 2
   m_Name: player
   m_TagString: Untagged
@@ -177,6 +178,80 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -1.5}
   serializedVersion: 2
   m_Size: {x: 14, y: 21}
+--- !u!82 &82000012556736754
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014206924156}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &95000010127784586
 Animator:
   serializedVersion: 3
@@ -205,6 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5857e6f202c045419ed58f4ff18786f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GroundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   HorizontalAcceleration: 6
   HorizontalFriction: 3
   MaxHorizontalSpeed: 65
@@ -216,9 +294,9 @@ MonoBehaviour:
   ProjectilePrefab: {fileID: 1000013269461804, guid: 9b8d85a4cf25a0c40a26082e23ded1ea,
     type: 2}
   ProjectileSpeed: 125
-  GroundLayerMask:
-    serializedVersion: 2
-    m_Bits: 256
+  JumpAudio: {fileID: 8300000, guid: 6677416fadaa16e46812738676a58d42, type: 3}
+  LandAudio: {fileID: 8300000, guid: d8cec5909e790c24492b200d76e6ce41, type: 3}
+  BlastAudio: {fileID: 8300000, guid: ece6956fee817c147b972ad0f7a82e1b, type: 3}
 --- !u!212 &212000010920042762
 SpriteRenderer:
   m_ObjectHideFlags: 1
