@@ -21,7 +21,7 @@ public class DestroyAfterLifetime : MonoBehaviour
         m_TotalLifetime = 0.0f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         m_TotalLifetime += Time.deltaTime;
 
