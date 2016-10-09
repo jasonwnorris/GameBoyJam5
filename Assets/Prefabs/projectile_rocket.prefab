@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010845434246}
-  - 212: {fileID: 212000012378411682}
-  - 60: {fileID: 60000014255203780}
+  - 61: {fileID: 61000013543495026}
   - 50: {fileID: 50000010728708750}
+  - 212: {fileID: 212000012378411682}
   - 114: {fileID: 114000010263017062}
   - 114: {fileID: 114000012558763352}
   m_Layer: 11
@@ -54,15 +54,15 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &60000014255203780
-PolygonCollider2D:
+--- !u!61 &61000013543495026
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -73,12 +73,8 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: -4, y: 4}
-      - {x: -4, y: -4}
-      - {x: 4, y: -4}
-      - {x: 4, y: 4}
+  serializedVersion: 2
+  m_Size: {x: 4, y: 8}
 --- !u!114 &114000010263017062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c9feebde267004d866b09258935dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 1
+  Health: 3
   Knockback: 0
 --- !u!212 &212000012378411682
 SpriteRenderer:

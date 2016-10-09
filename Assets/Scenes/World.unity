@@ -133,6 +133,16 @@ Prefab:
       propertyPath: m_Name
       value: enemy_bat (001)
       objectReference: {fileID: 0}
+    - target: {fileID: 82000010941395510, guid: 2f6e4b0bcb4c94349b2830815cdd37f3,
+        type: 2}
+      propertyPath: panLevelCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 82000010941395510, guid: 2f6e4b0bcb4c94349b2830815cdd37f3,
+        type: 2}
+      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f6e4b0bcb4c94349b2830815cdd37f3, type: 2}
   m_IsPrefabParent: 0
@@ -374,7 +384,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1001 &1673340261
 Prefab:
   m_ObjectHideFlags: 0
@@ -413,11 +423,6 @@ Prefab:
     - target: {fileID: 4000012459115214, guid: 28c84aa52efee1b458edce5501135644, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012573101620, guid: 28c84aa52efee1b458edce5501135644,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28c84aa52efee1b458edce5501135644, type: 2}
@@ -459,7 +464,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011231162838, guid: cf35c7a6c131d6b4ea2cd8a85be1fa76, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SortingOrder
