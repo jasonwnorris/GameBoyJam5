@@ -67,10 +67,10 @@ public class SlimeBehavior : MonoBehaviour
 
     private void CheckCollision()
     {
-        Vector2 groundSensorLeft = ToVector2(m_GroundSensorLeftTransform.position);
-        Vector2 groundSensorRight = ToVector2(m_GroundSensorRightTransform.position);
-        Vector2 wallSensorLeft = ToVector2(m_WallSensorLeftTransform.position);
-        Vector2 wallSensorRight = ToVector2(m_WallSensorRightTransform.position);
+        Vector2 groundSensorLeft = Tools.ToVector2(m_GroundSensorLeftTransform.position);
+        Vector2 groundSensorRight = Tools.ToVector2(m_GroundSensorRightTransform.position);
+        Vector2 wallSensorLeft = Tools.ToVector2(m_WallSensorLeftTransform.position);
+        Vector2 wallSensorRight = Tools.ToVector2(m_WallSensorRightTransform.position);
 
         if (!Physics2D.OverlapPoint(groundSensorLeft, GroundLayerMask) || Physics2D.OverlapPoint(wallSensorLeft, GroundLayerMask))
         {
@@ -93,15 +93,6 @@ public class SlimeBehavior : MonoBehaviour
     {
         m_IsFacingRight = true;
         m_Animator.Play(c_AnimationSlimeRight);
-    }
-
-    #endregion
-
-    #region Helpers
-
-    private Vector2 ToVector2(Vector3 p_Vector)
-    {
-        return new Vector2(p_Vector.x, p_Vector.y);
     }
 
     #endregion

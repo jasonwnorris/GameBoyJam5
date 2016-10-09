@@ -73,7 +73,7 @@ public class LockBoundary : MonoBehaviour
 
     void Update()
     {
-        Vector2 position = new Vector2(m_Transform.position.x, m_Transform.position.y);
+        Vector2 position = Tools.ToVector2(m_Transform.position);
 
         foreach (Lock l in m_Locks)
         {
