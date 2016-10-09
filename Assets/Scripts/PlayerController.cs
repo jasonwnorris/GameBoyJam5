@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         m_TotalJumpTime = 0.0f;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         // Read input.
         float horizontalInput = Input.GetAxis(c_AxisHorizontal);
