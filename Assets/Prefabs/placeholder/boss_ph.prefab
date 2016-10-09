@@ -22,7 +22,7 @@ GameObject:
   - 212: {fileID: 212000010733804674}
   - 60: {fileID: 60000010419121520}
   m_Layer: 0
-  m_Name: boss
+  m_Name: boss_ph
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
