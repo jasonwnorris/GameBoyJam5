@@ -54,7 +54,7 @@ GameObject:
   - 111: {fileID: 111000013739345142}
   - 61: {fileID: 61000013118795990}
   m_Layer: 0
-  m_Name: Spikes_Moving
+  m_Name: spikes_moving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

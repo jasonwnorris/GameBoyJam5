@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000014064647758}
   - 95: {fileID: 95000011900538032}
   m_Layer: 0
-  m_Name: Door
+  m_Name: door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
