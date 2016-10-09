@@ -129,6 +129,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114000013122775594, guid: 97ee6a9f42deddb4eaddfc42a87979d1,
+        type: 2}
+      propertyPath: Subject
+      value: 
+      objectReference: {fileID: 1363446658}
     - target: {fileID: 114000012373360100, guid: 97ee6a9f42deddb4eaddfc42a87979d1,
         type: 2}
       propertyPath: Target
@@ -226,6 +231,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1363446658 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000014206924156, guid: 28c84aa52efee1b458edce5501135644,
+    type: 2}
+  m_PrefabInternal: {fileID: 1673340261}
 --- !u!4 &1538674460 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012459115214, guid: 28c84aa52efee1b458edce5501135644,
