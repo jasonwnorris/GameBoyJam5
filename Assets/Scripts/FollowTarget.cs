@@ -22,7 +22,7 @@ public class FollowTarget : MonoBehaviour
         m_Transform = GetComponent<Transform>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector2 currentPosition = new Vector2(m_Transform.position.x, m_Transform.position.y);
         Vector2 targetPosition = new Vector2(Target.position.x, Target.position.y);
