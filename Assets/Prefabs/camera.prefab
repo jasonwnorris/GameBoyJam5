@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  FollowFactor: 10
+  FollowFactor: 0.05
 --- !u!114 &114000013999509080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,10 +120,16 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 512
-  TopDistance: 72
-  BottomDistance: 72
-  LeftDistance: 80
-  RightDistance: 80
+  Size: 50
+  ScanParameters:
+  - Direction: 0
+    Distance: 72
+  - Direction: 1
+    Distance: 72
+  - Direction: 2
+    Distance: 80
+  - Direction: 3
+    Distance: 80
 --- !u!124 &124000012954691866
 Behaviour:
   m_ObjectHideFlags: 1

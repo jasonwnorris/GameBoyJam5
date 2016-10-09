@@ -5,7 +5,9 @@ public class FollowTarget : MonoBehaviour
     #region Public Variables
 
     public Transform Target;
-    public float FollowFactor = 2.0f;
+
+    [Range(0.001f, 1.0f)]
+    public float FollowFactor;
 
     #endregion
 
@@ -13,25 +15,35 @@ public class FollowTarget : MonoBehaviour
 
     private Transform m_Transform;
 
+    private float m_Z;
+
     #endregion
 
-    #region Methods
+    #region MonoBehaviour Methods
 
     void Start()
     {
         m_Transform = GetComponent<Transform>();
+
+        m_Z = m_Transform.position.z;
     }
 
     void Update()
     {
-        Vector2 currentPosition = new Vector2(m_Transform.position.x, m_Transform.position.y);
-        Vector2 targetPosition = new Vector2(Target.position.x, Target.position.y);
+        Vector3 targetPosition = new Vector3(Target.position.x, Target.position.y, m_Z);
 
-        Vector2 difference = targetPosition - currentPosition;
+        Vector3 difference = targetPosition - m_Transform.position;
 
-        Vector2 movePosition = currentPosition + difference / FollowFactor;
+        float speed = difference.magnitude * FollowFactor;
 
-        m_Transform.position = new Vector3(movePosition.x, movePosition.y, m_Transform.position.z);
+        if (difference.magnitude < speed)
+        {
+            m_Transform.Translate(difference);
+        }
+        else
+        {
+            m_Transform.Translate(difference.normalized * speed);
+        }
     }
 
     #endregion
