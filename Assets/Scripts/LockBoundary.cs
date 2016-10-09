@@ -52,7 +52,7 @@ public class LockBoundary : MonoBehaviour
 
     #endregion
 
-    #region Members
+    #region Components
 
     private Transform m_Transform;
 
@@ -60,7 +60,7 @@ public class LockBoundary : MonoBehaviour
 
     #region MonoBehaviour Methods
 
-    void Start()
+    void Awake()
     {
         m_Transform = GetComponent<Transform>();
     }

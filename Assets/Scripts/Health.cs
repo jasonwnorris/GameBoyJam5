@@ -23,11 +23,15 @@ public class Health : MonoBehaviour
 
     #endregion
 
-    #region Members
+    #region Components
 
     private Rigidbody2D m_Rigidbody;
     private SpriteRenderer m_SpriteRenderer;
     private AudioSource m_AudioSource;
+
+    #endregion
+
+    #region Members
 
     private int m_Health;
     private bool m_IsVulnerable;

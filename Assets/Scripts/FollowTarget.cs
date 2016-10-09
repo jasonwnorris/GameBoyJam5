@@ -11,9 +11,13 @@ public class FollowTarget : MonoBehaviour
 
     #endregion
 
-    #region Members
+    #region Components
 
     private Transform m_Transform;
+
+    #endregion
+
+    #region Members
 
     private float m_Z;
 
@@ -21,10 +25,13 @@ public class FollowTarget : MonoBehaviour
 
     #region MonoBehaviour Methods
 
-    void Start()
+    void Awake()
     {
         m_Transform = GetComponent<Transform>();
+    }
 
+    void Start()
+    {
         m_Z = m_Transform.position.z;
     }
 

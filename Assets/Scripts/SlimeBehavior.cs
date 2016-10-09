@@ -21,7 +21,7 @@ public class SlimeBehavior : MonoBehaviour
 
     #endregion
 
-    #region Members
+    #region Components
 
     private Transform m_Transform;
     private Animator m_Animator;
@@ -31,13 +31,17 @@ public class SlimeBehavior : MonoBehaviour
     private Transform m_WallSensorLeftTransform;
     private Transform m_WallSensorRightTransform;
 
+    #endregion
+
+    #region Members
+
     private bool m_IsFacingRight;
 
     #endregion
 
     #region MonoBehaviour Methods
 
-    void Start()
+    void Awake()
     {
         m_Transform = GetComponent<Transform>();
         m_Animator = GetComponent<Animator>();
@@ -46,7 +50,10 @@ public class SlimeBehavior : MonoBehaviour
         m_GroundSensorRightTransform = m_Transform.Find(c_GroundSensorRight).GetComponent<Transform>();
         m_WallSensorLeftTransform = m_Transform.Find(c_WallSensorLeft).GetComponent<Transform>();
         m_WallSensorRightTransform = m_Transform.Find(c_WallSensorRight).GetComponent<Transform>();
+    }
 
+    void Start()
+    {
         m_IsFacingRight = false;
     }
 

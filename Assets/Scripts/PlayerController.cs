@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    #region Members
+    #region Components
 
     private Transform m_Transform;
     private Rigidbody2D m_Rigidbody;
@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
     private Transform m_RightFireTransform;
     private BoxCollider2D m_GroundCollider;
 
+    #endregion
+
+    #region Members
+
     private bool m_IsFacingRight;
     private bool m_IsOnGround;
     private bool m_IsJumping;
@@ -68,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     #region MonoBehaviour Methods
 
-    void Start()
+    void Awake()
     {
         m_Transform = GetComponent<Transform>();
         m_Rigidbody = GetComponent<Rigidbody2D>();
@@ -78,7 +82,10 @@ public class PlayerController : MonoBehaviour
         m_LeftFireTransform = m_Transform.Find(c_FirePointLeft).GetComponent<Transform>();
         m_RightFireTransform = m_Transform.Find(c_FirePointRight).GetComponent<Transform>();
         m_GroundCollider = m_Transform.Find(c_GroundSensor).GetComponent<BoxCollider2D>();
+    }
 
+    void Start()
+    {
         m_IsFacingRight = true;
         m_IsOnGround = false;
         m_IsJumping = false;
