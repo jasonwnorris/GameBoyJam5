@@ -15,10 +15,10 @@ TagManager:
   - 
   - Ground
   - Bounds
-  - 
-  - 
-  - 
-  - 
+  - PlayerCharacter
+  - PlayerDamage
+  - EnemyCharacter
+  - EnemyDamage
   - 
   - 
   - 
