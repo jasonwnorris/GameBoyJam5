@@ -120,16 +120,10 @@ MonoBehaviour:
   LayerMask:
     serializedVersion: 2
     m_Bits: 512
-  BoxSize: 25
-  ScanParameters:
-  - Direction: 0
-    Distance: 72
-  - Direction: 1
-    Distance: 72
-  - Direction: 2
-    Distance: 80
-  - Direction: 3
-    Distance: 80
+  TopDistance: 72
+  BottomDistance: 72
+  LeftDistance: 80
+  RightDistance: 80
 --- !u!124 &124000012954691866
 Behaviour:
   m_ObjectHideFlags: 1
