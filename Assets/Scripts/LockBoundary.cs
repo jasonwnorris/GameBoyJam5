@@ -36,7 +36,7 @@ public class LockBoundary : MonoBehaviour
         m_Transform = GetComponent<Transform>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         Vector2 boxSize = new Vector2(Size * 2.0f, Size * 2.0f);
         foreach (ScanParameter scanParameter in ScanParameters)
