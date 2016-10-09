@@ -4,10 +4,16 @@ public class PlayerController : MonoBehaviour
 {
     #region Constants
 
+    const string c_AnimationFallLeft = "anim_player_jump_left";
+    const string c_AnimationFallRight = "anim_player_jump_right";
     const string c_AnimationIdleLeft = "anim_player_idle_left";
     const string c_AnimationIdleRight = "anim_player_idle_right";
+    const string c_AnimationJumpLeft = "anim_player_jump_left";
+    const string c_AnimationJumpRight = "anim_player_jump_right";
     const string c_AnimationRunLeft = "anim_player_run_left";
     const string c_AnimationRunRight = "anim_player_run_right";
+    const string c_AnimationShootLeft = "anim_player_shoot_left";
+    const string c_AnimationShootRight = "anim_player_shoot_right";
 
     const string c_AxisHorizontal = "Horizontal";
     const string c_ButtonFire = "Fire1";
@@ -85,6 +91,16 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis(c_AxisHorizontal);
         bool isFireButtonDown = Input.GetButtonDown(c_ButtonFire);
         bool isJumpButtonDown = Input.GetButton(c_ButtonJump);
+
+        // Change states based on input.
+        if (horizontalInput > 0.0f)
+        {
+            m_IsFacingRight = true;
+        }
+        else if (horizontalInput < 0.0f)
+        {
+            m_IsFacingRight = false;
+        }
 
         // Store temporary of current velocity.
         Vector2 velocity = m_Rigidbody.velocity;
@@ -164,34 +180,32 @@ public class PlayerController : MonoBehaviour
         // Handle firing.
         if (isFireButtonDown)
         {
-            GameObject go = (GameObject)Instantiate(ProjectilePrefab, (m_IsFacingRight ? m_RightFireTransform.position : m_LeftFireTransform.position), Quaternion.identity);
-            Rigidbody2D rigidbody = go.GetComponent<Rigidbody2D>();
-            rigidbody.velocity = (m_IsFacingRight ? Vector2.right : Vector2.left) * ProjectileSpeed;
-
-            PlaySound(BlastAudio);
+            ShootProjectile();
         }
 
-        // Change states based on input.
-        if (horizontalInput > 0.0f)
+        // Handle animations.
+        if (m_IsOnGround)
         {
-            m_Animator.Play(c_AnimationRunRight);
-            m_IsFacingRight = true;
-        }
-        else if (horizontalInput < 0.0f)
-        {
-            m_Animator.Play(c_AnimationRunLeft);
-            m_IsFacingRight = false;
-        }
-        else
-        {
-            if (m_IsFacingRight)
+            if (horizontalInput > 0.0f)
             {
-                m_Animator.Play(c_AnimationIdleRight);
+                PlayAnimation(c_AnimationRunRight);
+            }
+            else if (horizontalInput < 0.0f)
+            {
+                PlayAnimation(c_AnimationRunLeft);
             }
             else
             {
-                m_Animator.Play(c_AnimationIdleLeft);
+                PlayAnimation(m_IsFacingRight ? c_AnimationIdleRight : c_AnimationIdleLeft);
             }
+        }
+        else if (m_IsJumping)
+        {
+            PlayAnimation(m_IsFacingRight ? c_AnimationJumpRight : c_AnimationJumpLeft);
+        }
+        else
+        {
+            PlayAnimation(m_IsFacingRight ? c_AnimationFallRight : c_AnimationFallLeft);
         }
     }
 
@@ -199,9 +213,24 @@ public class PlayerController : MonoBehaviour
 
     #region Helpers
 
+    private void PlayAnimation(string p_AnimationName)
+    {
+        m_Animator.Play(p_AnimationName);
+    }
+
     private void PlaySound(AudioClip p_AudioClip)
     {
         m_AudioSource.PlayOneShot(p_AudioClip);
+    }
+
+    private void ShootProjectile()
+    {
+        GameObject gameObject = (GameObject)Instantiate(ProjectilePrefab, (m_IsFacingRight ? m_RightFireTransform.position : m_LeftFireTransform.position), Quaternion.identity);
+        Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        rigidbody.velocity = (m_IsFacingRight ? Vector2.right : Vector2.left) * ProjectileSpeed;
+
+        PlayAnimation(m_IsFacingRight ? c_AnimationShootRight : c_AnimationShootLeft);
+        PlaySound(BlastAudio);
     }
 
     #endregion
