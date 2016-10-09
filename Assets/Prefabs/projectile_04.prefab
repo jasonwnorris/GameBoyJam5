@@ -24,7 +24,7 @@ GameObject:
   - 212: {fileID: 212000013179500852}
   - 114: {fileID: 114000014229264670}
   - 114: {fileID: 114000013412821844}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: projectile_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
