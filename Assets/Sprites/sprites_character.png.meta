@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: e1bbd44f4be740d479bf7d1a53919801
-timeCreated: 1475630293
+timeCreated: 1475995226
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -30,6 +30,8 @@ TextureImporter:
     21300046: spr_player_shoot_left_04
     21300048: spr_player_jump_right_01
     21300050: spr_player_jump_left_01
+    21300052: spr_player_jump_right
+    21300054: spr_player_jump_left
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -131,23 +133,10 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spr_player_idle_left_04
+      name: spr_player_idle_left_01
       rect:
         serializedVersion: 2
-        x: 72
-        y: 120
-        width: 24
-        height: 24
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: spr_player_idle_left_03
-      rect:
-        serializedVersion: 2
-        x: 48
+        x: 0
         y: 120
         width: 24
         height: 24
@@ -170,10 +159,23 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spr_player_idle_left_01
+      name: spr_player_idle_left_03
       rect:
         serializedVersion: 2
-        x: 0
+        x: 48
+        y: 120
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: spr_player_idle_left_04
+      rect:
+        serializedVersion: 2
+        x: 72
         y: 120
         width: 24
         height: 24
@@ -391,7 +393,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spr_player_jump_right_01
+      name: spr_player_jump_right
       rect:
         serializedVersion: 2
         x: 0
@@ -404,7 +406,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: spr_player_jump_left_01
+      name: spr_player_jump_left
       rect:
         serializedVersion: 2
         x: 24
