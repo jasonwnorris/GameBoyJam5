@@ -21,6 +21,8 @@ public class TurretBehavior : MonoBehaviour
     [Range(0.0f, 1000.0f)]
     public float Speed;
 
+    public AudioClip SoundEffect;
+
     [Header("Pattern")]
 
     [Range(1, 10)]
@@ -34,6 +36,12 @@ public class TurretBehavior : MonoBehaviour
 
     #endregion
 
+    #region Components
+
+    private AudioSource m_AudioSource;
+
+    #endregion
+
     #region Members
 
     private RestPeriod m_RestPeriod;
@@ -43,6 +51,16 @@ public class TurretBehavior : MonoBehaviour
     #endregion
 
     #region MonoBehaviour Methods
+
+    void Awake()
+    {
+        m_AudioSource = GetComponent<AudioSource>();
+
+        if (m_AudioSource == null)
+        {
+            Debug.LogWarning("Entity " + gameObject.name + " is using TurretBehavior script with no AudioSource attached.");
+        }
+    }
 
     void Start()
     {
@@ -77,6 +95,11 @@ public class TurretBehavior : MonoBehaviour
             GameObject gameObject = (GameObject)Instantiate(Prefab, Origin.position, Quaternion.identity);
             Rigidbody2D rigidbody = gameObject.GetComponent<Rigidbody2D>();
             rigidbody.velocity = DirectionUtil.AsVector3[Direction] * Speed;
+
+            if (m_AudioSource != null)
+            {
+                m_AudioSource.PlayOneShot(SoundEffect);
+            }
 
             ++m_FireCount;
             if (m_FireCount >= FireCount)
