@@ -70,11 +70,12 @@ GameObject:
   - 95: {fileID: 95000010127784586}
   - 212: {fileID: 212000010920042762}
   - 82: {fileID: 82000012556736754}
+  - 114: {fileID: 114000013213965354}
   - 114: {fileID: 114000013906913284}
   - 114: {fileID: 114000012573101620}
   m_Layer: 10
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,6 +288,17 @@ MonoBehaviour:
   MaximumHealth: 10
   InvulnerabilityTime: 1.5
   TakeDamageAudio: {fileID: 8300000, guid: 386cb1beccc8e3649a1fe63e41a5a2b5, type: 3}
+--- !u!114 &114000013213965354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000014206924156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b1ccbad852818e419754585bcae105e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013906913284
 MonoBehaviour:
   m_ObjectHideFlags: 1
