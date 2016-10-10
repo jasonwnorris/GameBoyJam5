@@ -129,7 +129,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -151,7 +151,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!95 &95000010088973546
 Animator:
   serializedVersion: 3
@@ -185,7 +185,7 @@ MonoBehaviour:
     m_Bits: 2048
   MaximumHealth: 2
   InvulnerabilityTime: 0.5
-  TakeDamageAudio: {fileID: 0}
+  TakeDamageAudio: {fileID: 8300000, guid: 3edfd8d487a94784b8876ed66a9bf9df, type: 3}
 --- !u!114 &114000012786303378
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -176,16 +176,6 @@ Prefab:
       propertyPath: m_Name
       value: enemy_bat (001)
       objectReference: {fileID: 0}
-    - target: {fileID: 82000010941395510, guid: 2f6e4b0bcb4c94349b2830815cdd37f3,
-        type: 2}
-      propertyPath: panLevelCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82000010941395510, guid: 2f6e4b0bcb4c94349b2830815cdd37f3,
-        type: 2}
-      propertyPath: reverbZoneMixCustomCurve.m_RotationOrder
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f6e4b0bcb4c94349b2830815cdd37f3, type: 2}
   m_IsPrefabParent: 0
@@ -900,6 +890,11 @@ Prefab:
     - target: {fileID: 4000012459115214, guid: 28c84aa52efee1b458edce5501135644, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 50000013114779728, guid: 28c84aa52efee1b458edce5501135644,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28c84aa52efee1b458edce5501135644, type: 2}

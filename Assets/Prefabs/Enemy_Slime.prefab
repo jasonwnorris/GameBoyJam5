@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012727177856}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 52.7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -301,7 +301,7 @@ MonoBehaviour:
     m_Bits: 2048
   MaximumHealth: 3
   InvulnerabilityTime: 0.75
-  TakeDamageAudio: {fileID: 8300000, guid: 386cb1beccc8e3649a1fe63e41a5a2b5, type: 3}
+  TakeDamageAudio: {fileID: 8300000, guid: 3edfd8d487a94784b8876ed66a9bf9df, type: 3}
 --- !u!114 &114000011838847828
 MonoBehaviour:
   m_ObjectHideFlags: 1
