@@ -630,7 +630,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1244530104}
   m_Layer: 0
-  m_Name: spawn_hallway_to_title
+  m_Name: spawn_from_hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,7 +701,11 @@ Prefab:
     - target: {fileID: 114000013353920300, guid: 683a12fc3a44e724098d48d0dfdc028d,
         type: 2}
       propertyPath: SpawnPointName
-      value: spawn_world_to_hallway
+      value: spawn_from_title
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011855210672, guid: 683a12fc3a44e724098d48d0dfdc028d, type: 2}
+      propertyPath: m_Name
+      value: teleport_to_hallway
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 683a12fc3a44e724098d48d0dfdc028d, type: 2}
