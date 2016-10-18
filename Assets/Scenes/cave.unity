@@ -494,12 +494,12 @@ Prefab:
     - target: {fileID: 114000013353920300, guid: 683a12fc3a44e724098d48d0dfdc028d,
         type: 2}
       propertyPath: SceneName
-      value: boss
+      value: title
       objectReference: {fileID: 0}
     - target: {fileID: 114000013353920300, guid: 683a12fc3a44e724098d48d0dfdc028d,
         type: 2}
       propertyPath: SpawnPointName
-      value: spawn_from_cave
+      value: spawn_from_entry
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 683a12fc3a44e724098d48d0dfdc028d, type: 2}
