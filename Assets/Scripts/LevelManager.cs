@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -12,6 +10,8 @@ public class LevelManager : MonoBehaviour
     #region Public Variables
 
     public Transform PlayerTransform;
+    public string SceneName;
+    public string SpawnPointName;
 
     #endregion
 
@@ -27,6 +27,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+
+        ChangeMap(SceneName, SpawnPointName);
     }
 
     #endregion
