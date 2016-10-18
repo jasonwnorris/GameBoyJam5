@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2979f59adc0c7634fbee5393c2bb6d95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerTransform: {fileID: 1427962807}
+  Player: {fileID: 899095857}
   SceneName: title
   SpawnPointName: spawn_from_entry
 --- !u!114 &850838662
@@ -207,6 +207,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b1ccbad852818e419754585bcae105e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &899095857 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000014206924156, guid: 28c84aa52efee1b458edce5501135644,
+    type: 2}
+  m_PrefabInternal: {fileID: 1427962806}
 --- !u!1001 &1427962806
 Prefab:
   m_ObjectHideFlags: 0

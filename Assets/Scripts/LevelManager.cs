@@ -9,9 +9,16 @@ public class LevelManager : MonoBehaviour
 
     #region Public Variables
 
-    public Transform PlayerTransform;
+    public GameObject Player;
     public string SceneName;
     public string SpawnPointName;
+
+    #endregion
+
+    #region Components
+
+    private Transform m_Transform;
+    private Rigidbody2D m_Rigidbody;
 
     #endregion
 
@@ -23,6 +30,12 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     #region MonoBehaviour Methods
+
+    void Awake()
+    {
+        m_Transform = Player.GetComponent<Transform>();
+        m_Rigidbody = Player.GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
@@ -52,8 +65,10 @@ public class LevelManager : MonoBehaviour
         GameObject spawnPoint = GameObject.Find(m_SpawnPointName);
         if (spawnPoint != null)
         {
-            PlayerTransform.position = spawnPoint.transform.position;
-            Camera.main.transform.position = PlayerTransform.position;
+            m_Transform.position = spawnPoint.transform.position;
+            m_Rigidbody.velocity = Vector3.zero;
+
+            Camera.main.transform.position = m_Transform.position;
         }
     }
 
